@@ -1,4 +1,4 @@
-let provider = new Web3(web3.currentProvider)
+let provider = ethers.providers.Web3Provider(window.ethereum)
 let signer
 
 async function connectMetamask() {
