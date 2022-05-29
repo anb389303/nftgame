@@ -12,7 +12,7 @@ async function connectMetamask() {
 }
 
 async function claimTokens() {
-    const runTokenContractAddress = "0xc0cd71790E2ad0A82976BC712DEf3045177fe9a8";
+    const runTokenContractAddress = "0x726d027fD65b9e7e8Df918d3ed635744343E8AD0";
     const runTokenContractAbi = [
         "function mintTokens(address account, uint256 amount) public",
     ];
