@@ -1,7 +1,7 @@
 import { updateGround, setupGround } from "./ground.js"
 import { updatePlayer, setupPlayer, getPlayerRect, setPlayerLose } from "./player.js"
 import { updateObstacle, setupObstacle, getObstacleRects } from "./obstacle.js"
-
+import { updateNft, setupNft, getNftRects } from "./nft.js"
 
 const GAME_WIDTH = 100
 const GAME_HEIGHT = 30
@@ -11,8 +11,9 @@ const gameElem = document.querySelector("[data-game]")
 const scoreElem = document.querySelector("[data-score]")
 const startScreenElem = document.querySelector("[data-start-screen]")
 const gweiTotalScoreEleme = document.querySelector("[data-wei-total-score]")
+const nftTotalScoreElem = document.querySelector("[data-nft-total-score]")
 
-
+const nftScoreElem = document.querySelector("[data-nft-score ]")
 
 setPixelToGameScale()
 window.addEventListener("resize", setPixelToGameScale)
@@ -21,7 +22,7 @@ document.addEventListener("keydown", handleStart, { once: true })
 let lastTime
 let speedScale
 let score
-
+let nftScore = 0
 
 function update(time) {
   if (lastTime == null) {
@@ -58,7 +59,16 @@ function isCollision(rect1, rect2) {
   )
 }
 
-
+function checkIfWeGotNft() {
+  const playerRect = getPlayerRect()
+  if(getNftRects().some(rect => isCollision(rect, playerRect))) {
+    const nftToRemove = document.querySelectorAll("[data-nft]")[0]
+    nftToRemove.remove()
+    nftScore += 1
+    nftScoreElem.textContent = `nft score: ${nftScore}`
+  }
+  return getNftRects().some(rect => isCollision(rect, playerRect))
+}
 
 function updateSpeedScale(delta) {
   speedScale += delta * SPEED_SCALE_INCREASE
@@ -86,17 +96,18 @@ function handleStart() {
 }
 
 
-
+window.totalNFTScore = 0
 window.totalGweiScore = 0
 
 function handleLose() {
   window.totalGweiScore += Math.floor(score)  
- 
+  window.totalNFTScore += nftScore
 
-  
+  nftTotalScoreElem.textContent = `NFT total score: ${window.totalNFTScore}`
   gweiTotalScoreEleme.textContent = `Wei total score ${window.totalGweiScore}`
 
-  
+  nftScore = 0
+  nftScoreElem.textContent = `nft score: ${nftScore}`
   setPlayerLose()
   // save
   setTimeout(() => {
