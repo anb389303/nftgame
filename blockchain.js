@@ -22,11 +22,4 @@ async function claimTokens() {
     await runTokenContract.connect(signer).mintTokens(signer.getAddress(), amountToClaim.toString())
 }
 
-async function claimNft() {
-    const nftContractAddress = "0x1C7fD9acEeb5DC598CBe907bA178c95A09040c85";
-    const mintContractAbi = [
-        "function mint(uint256 amount) public",
-    ];
-    const nftContract = new ethers.Contract(nftContractAddress, mintContractAbi, provider);
-    await nftContract.connect(signer).mint(window.totalNFTScore.toString())
-}
+
