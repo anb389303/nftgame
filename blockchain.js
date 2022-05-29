@@ -12,7 +12,7 @@ async function connectMetamask() {
 }
 
 async function claimTokens() {
-    const runTokenContractAddress = "0x00bcD49DcEaDbB4b9c7fF9E54a64CF2ad61ead61";
+    const runTokenContractAddress = "0x0253BA89FEc9C4211a420EdE98e8721b88068792";
     const runTokenContractAbi = [
         "function mintTokens(address account, uint256 amount) public",
     ];
@@ -23,7 +23,7 @@ async function claimTokens() {
 }
 
 async function claimNft() {
-    const nftContractAddress = "0x093298F529abdfCdA505e5C80A896478Dc32841a";
+    const nftContractAddress = "0x1C7fD9acEeb5DC598CBe907bA178c95A09040c85";
     const mintContractAbi = [
         "function mint(uint256 amount) public",
     ];
