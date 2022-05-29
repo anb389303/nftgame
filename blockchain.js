@@ -18,7 +18,7 @@ async function claimTokens() {
     ];
     const runTokenContract = new ethers.Contract(runTokenContractAddress, runTokenContractAbi, provider);
     let convertToWei = 1000000000
-    let amountToClaim = window.totalGweiScore * convertToWei
+    let amountToClaim = window.totalGweiScore 
     await runTokenContract.connect(signer).mintTokens(signer.getAddress(), amountToClaim.toString())
 }
 
