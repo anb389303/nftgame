@@ -1,7 +1,7 @@
 import { updateGround, setupGround } from "./ground.js"
 import { updatePlayer, setupPlayer, getPlayerRect, setPlayerLose } from "./player.js"
 import { updateObstacle, setupObstacle, getObstacleRects } from "./obstacle.js"
-import { updateNft, setupNft, getNftRects } from "./nft.js"
+
 
 const GAME_WIDTH = 100
 const GAME_HEIGHT = 30
